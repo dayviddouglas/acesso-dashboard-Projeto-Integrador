@@ -31,6 +31,18 @@ rotas.get('/',async (req,res)=> {
    }
 })
 
+rotas.get('/user/:login', async (req, res)=>{
+
+    const loginUser = req.params.login
+    try{
+        const login = await Login.findOne({login:loginUser});
+        res.status(200).json(login);
+        
+    }catch (err){
+        res.status(404).json({erro:err})
+    }
+})
+
 rotas.put('/update/:id', async (req, res)=>{
 
     const id = req.params.id
@@ -67,6 +79,8 @@ rotas.delete('/delete/:id', async(req, res)=>{
     }
     
 })
+
+
 
 
 
